@@ -165,23 +165,27 @@ When running via Docker, there are a few differences from the native installatio
 
 ## Building the Image Locally
 
-For contributors or custom builds:
+For contributors or custom builds, run from the repository root:
+
+```bash
+docker build -t phoenix-docgen:latest .
+```
+
+On **macOS/Linux** with `make` available, you can use the convenience targets in `docker/Makefile`:
 
 ```bash
 cd docker
-make build
+make build              # Build and tag with git version + latest
+make build-multiarch    # Build for amd64 + arm64 and push to GHCR
+make push               # Push locally built image to GHCR
+make clean              # Remove local images
 ```
 
-This builds the image from the repo root using the `Dockerfile`. The image is tagged with both the current git version and `latest`.
+On **Windows** (or anywhere without `make`), use `docker build` directly as shown above. To tag with a specific version:
 
-For multi-architecture builds (amd64 + arm64):
-
-```bash
-cd docker
-make build-multiarch
+```powershell
+docker build -t ghcr.io/hoppers99/phoenix-docgen:v1.0.0 -t ghcr.io/hoppers99/phoenix-docgen:latest .
 ```
-
-This uses Docker Buildx to build and push images for both Intel/AMD and Apple Silicon / ARM platforms.
 
 ---
 
