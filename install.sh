@@ -19,7 +19,7 @@ CONFIG_DIR="$HOME/.config/phoenix-docgen"
 
 if [[ "${1:-}" == "--uninstall" ]]; then
     echo "Removing phoenix-docgen symlinks..."
-    rm -f "$BIN_DIR/phoenix-docgen"
+    rm -f "$BIN_DIR/phoenix-docgen" "$BIN_DIR/pdg"
     rm -rf "$TOOL_DIR"
     echo "Done. Config at $CONFIG_DIR left intact."
     exit 0
@@ -49,10 +49,12 @@ if [[ -d "$REPO_DIR/themes" ]]; then
     echo "  themes/ → $TOOL_DIR/themes"
 fi
 
-# Symlink shell wrapper
+# Symlink shell wrapper + short alias
 ln -sf "$REPO_DIR/src/phoenix-docgen.sh" "$BIN_DIR/phoenix-docgen"
+ln -sf phoenix-docgen "$BIN_DIR/pdg"
 chmod +x "$BIN_DIR/phoenix-docgen"
 echo "  phoenix-docgen → $BIN_DIR/phoenix-docgen"
+echo "  pdg            → $BIN_DIR/pdg (alias)"
 
 # Create venv if it doesn't exist
 if [[ ! -f "$TOOL_DIR/venv/bin/activate" ]]; then
@@ -80,4 +82,4 @@ else
 fi
 
 echo
-echo "Done. Run 'phoenix-docgen --help' to verify."
+echo "Done. Run 'phoenix-docgen --help' or 'pdg --help' to verify."
