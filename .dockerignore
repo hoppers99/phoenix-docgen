@@ -1,0 +1,15 @@
+# Keep the Docker build context small — only src/*.py is needed
+.git
+themes/
+__pycache__
+*.pyc
+.DS_Store
+venv/
+docs/
+claude/
+docker/
+*.md
+LICENCE
+install.sh
+.gitignore
+.dockerignore

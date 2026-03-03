@@ -33,7 +33,24 @@ This creates symlinks so changes in the repo are immediately available:
 - `~/.local/share/phoenix-docgen/*.py` → source files
 - `~/.local/share/phoenix-docgen/themes/` → themes directory
 
-### Install (Windows)
+### Install (Docker — Windows recommended, any platform)
+
+Docker bundles Python, pandoc, WeasyPrint, and all native dependencies into a single image. This is the recommended path for Windows and available by choice on any platform.
+
+```bash
+docker pull ghcr.io/hoppers99/phoenix-docgen:latest
+```
+
+Copy the wrapper script to somewhere on your PATH:
+
+- **macOS/Linux:** `cp docker/pdg-docker.sh ~/.local/bin/pdg-docker && chmod +x ~/.local/bin/pdg-docker`
+- **Windows:** Copy `docker/pdg-docker.ps1` and `docker/pdg-docker.bat` to a directory on your PATH
+
+Set your themes directory: `export PHOENIX_THEMES_DIR="$HOME/themes/phoenix-docgen"` (or the Windows equivalent — see [Docker documentation](docs/docker.md) for full setup).
+
+### Install (Windows — Native)
+
+If you prefer a native installation on Windows without Docker:
 
 1. Clone the repo
 2. Create a venv: `python -m venv %LOCALAPPDATA%\phoenix-docgen\venv`

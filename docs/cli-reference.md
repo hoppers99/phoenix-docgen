@@ -314,3 +314,22 @@ pip install weasyprint pyyaml
 ```
 
 The `pdg` alias is a symlink to `phoenix-docgen` created during installation, so both commands behave identically.
+
+---
+
+## Docker Wrapper
+
+When using the Docker installation, the `pdg-docker` command is a thin script that translates your command into a `docker run` invocation. It automatically:
+
+- Mounts your current working directory as the container's working directory
+- Mounts your themes directory (from `PHOENIX_THEMES_DIR` or the config file)
+- Passes all CLI arguments through to the containerised phoenix-docgen
+- Sets file ownership correctly on Linux
+
+The Docker wrapper supports the same subcommands and flags as the native installation. See [Docker](docker.md) for full setup and usage instructions.
+
+You can override the Docker image with the `PDG_IMAGE` environment variable:
+
+```bash
+export PDG_IMAGE="ghcr.io/hoppers99/phoenix-docgen:v1.0.0"
+```

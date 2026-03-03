@@ -37,6 +37,16 @@ The wrapper script activates the virtual environment automatically, so you never
 
 > **Note:** Ensure `~/.local/bin` is on your `PATH`. Most shells include it by default. If `pdg` is not recognised after installation, add `export PATH="$HOME/.local/bin:$PATH"` to your shell profile.
 
+## Alternative: Docker Installation
+
+If you prefer not to install Python, pandoc, and WeasyPrint natively — or you are on Windows where these dependencies can be difficult to manage — phoenix-docgen is available as a Docker image that bundles everything.
+
+```bash
+docker pull ghcr.io/hoppers99/phoenix-docgen:latest
+```
+
+See [Docker](docker.md) for full setup instructions, wrapper script installation, and usage.
+
 ## Verify the Installation
 
 ```bash
@@ -136,3 +146,4 @@ pdg help combine          # Multi-chapter document configuration
 - [Markdown Features](markdown-features.md) — alerts, landscape sections, page breaks, and footnotes
 - [Multi-Chapter Combines](combine.md) — build large documents from multiple Markdown files
 - [CLI Reference](cli-reference.md) — full command-line option reference
+- [Docker](docker.md) — run phoenix-docgen via Docker (recommended for Windows)

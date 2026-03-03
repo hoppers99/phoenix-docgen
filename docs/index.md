@@ -33,3 +33,4 @@ This converts `report.md` (with YAML front-matter) into styled HTML and then ren
 - [Cover Pages and Classification](cover-and-classification.md) — SVG cover templates and classification levels
 - [Footer Customisation](footer.md) — page footers, document footers, and distribution notices
 - [CLI Reference](cli-reference.md) — full command-line option reference for `init`, `build`, and `combine`
+- [Docker](docker.md) — run phoenix-docgen via Docker (recommended for Windows)
