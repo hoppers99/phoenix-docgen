@@ -2,9 +2,9 @@
 description: Build branded PDF documents from markdown using configurable themes (init, build, combine)
 ---
 
-You are executing the `/phoenix-docgen` command to build branded documents.
+You are executing the `/pdg` command (short for phoenix-docgen) to build branded documents.
 
-**Tool**: `~/.local/bin/phoenix-docgen`
+**Tool**: `~/.local/bin/pdg` (phoenix-docgen)
 
 **Task**: Parse the user's arguments and execute the appropriate phoenix-docgen subcommand.
 
@@ -18,23 +18,23 @@ You are executing the `/phoenix-docgen` command to build branded documents.
 
 2. Execute the command:
    ```bash
-   ~/.local/bin/phoenix-docgen <subcommand> <args>
+   ~/.local/bin/pdg <subcommand> <args>
    ```
 
 3. Present the results to the user.
 
 **Example invocations**:
-- `/phoenix-docgen init report.md --title1 "AI" --title2 "STRATEGY"` → scaffold a new document
-- `/phoenix-docgen build report.md --pdf` → build markdown to HTML + PDF
-- `/phoenix-docgen build report.md --theme mytheme --pdf` → build with a specific theme
-- `/phoenix-docgen build report.md --version "v2.0 FINAL" --pdf` → build with version override
-- `/phoenix-docgen combine --config project.yaml --pdf` → build multi-chapter document
-- `/phoenix-docgen combine --config project.yaml --theme mytheme --pdf` → combine with theme
-- `/phoenix-docgen help` → show help
-- `/phoenix-docgen help branding` → show theme system documentation
+- `/pdg init report.md --title1 "AI" --title2 "STRATEGY"` → scaffold a new document
+- `/pdg build report.md --pdf` → build markdown to HTML + PDF
+- `/pdg build report.md --theme mytheme --pdf` → build with a specific theme
+- `/pdg build report.md --version "v2.0 FINAL" --pdf` → build with version override
+- `/pdg combine --config project.yaml --pdf` → build multi-chapter document
+- `/pdg combine --config project.yaml --theme mytheme --pdf` → combine with theme
+- `/pdg help` → show help
+- `/pdg help branding` → show theme system documentation
 
 **Important notes**:
-- Always use `~/.local/bin/phoenix-docgen` as the command (full path ensures it works in all shell environments)
+- Always use `~/.local/bin/pdg` as the command (full path ensures it works in all shell environments)
 - The wrapper handles venv activation automatically
 - For `build`, the markdown file should have YAML front-matter (use `init` to scaffold one)
 - For `combine`, a YAML config file defining chapters is required (use `init --config` to scaffold one)

@@ -10,8 +10,8 @@ Converts markdown documents to professionally styled HTML and PDF with configura
 ## Tool Location
 
 ```
-Command:         phoenix-docgen                          (on PATH via ~/.local/bin/)
-Shell wrapper:   ~/.local/bin/phoenix-docgen
+Command:         ~/.local/bin/pdg                        (short alias)
+Full command:    ~/.local/bin/phoenix-docgen              (symlink → repo src/)
 Python backend:  ~/.local/share/phoenix-docgen/phoenix-docgen.py
 Help topics:     ~/.local/share/phoenix-docgen/help_topics.py
 Theme system:    ~/.local/share/phoenix-docgen/theme.py
@@ -20,7 +20,7 @@ Global config:   ~/.config/phoenix-docgen/config.yaml
 Venv:            ~/.local/share/phoenix-docgen/venv/
 ```
 
-**Invoke directly as `phoenix-docgen`** — it's on PATH. The wrapper handles venv activation automatically.
+**Invoke as `~/.local/bin/pdg`** (short) or **`~/.local/bin/phoenix-docgen`** (full). Always use the full path — it may not be on PATH in all shell environments. The wrapper handles venv activation automatically.
 
 ---
 
@@ -32,18 +32,18 @@ Topic-based help system with detailed reference for all features.
 
 ```bash
 # List all help topics
-phoenix-docgen help
+~/.local/bin/pdg help
 
 # View a specific topic
-phoenix-docgen help frontmatter    # YAML front-matter fields and defaults
-phoenix-docgen help alerts         # GitHub-style alert boxes and inline glyphs
-phoenix-docgen help markdown       # Authoring features (landscape, page breaks, footnotes)
-phoenix-docgen help combine        # Multi-chapter YAML config and options
-phoenix-docgen help cover          # Cover page, SVG template, logo
-phoenix-docgen help classification # Classification levels and distribution notices
-phoenix-docgen help landscape      # Landscape sections and table column widths
-phoenix-docgen help footer         # Document footer customisation
-phoenix-docgen help branding       # Theme system, creating themes, branding config
+~/.local/bin/pdg help frontmatter    # YAML front-matter fields and defaults
+~/.local/bin/pdg help alerts         # GitHub-style alert boxes and inline glyphs
+~/.local/bin/pdg help markdown       # Authoring features (landscape, page breaks, footnotes)
+~/.local/bin/pdg help combine        # Multi-chapter YAML config and options
+~/.local/bin/pdg help cover          # Cover page, SVG template, logo
+~/.local/bin/pdg help classification # Classification levels and distribution notices
+~/.local/bin/pdg help landscape      # Landscape sections and table column widths
+~/.local/bin/pdg help footer         # Document footer customisation
+~/.local/bin/pdg help branding       # Theme system, creating themes, branding config
 ```
 
 ### `init` — Scaffold a New Document
@@ -52,19 +52,19 @@ Creates a richly commented markdown file with YAML front-matter, or a YAML confi
 
 ```bash
 # Single document with defaults
-phoenix-docgen init report.md
+~/.local/bin/pdg init report.md
 
 # Single document with pre-filled metadata and a specific theme
-phoenix-docgen init report.md \
+~/.local/bin/pdg init report.md \
   --title1 "APPLICATION" --title2 "STRATEGY" \
   --subtitle "FRAMEWORK v2.0" --doc-type "Strategy Framework" \
   --theme mytheme
 
 # Multi-chapter YAML config
-phoenix-docgen init --config project.yaml
+~/.local/bin/pdg init --config project.yaml
 
 # Multi-chapter with chapter list pre-filled
-phoenix-docgen init --config project.yaml \
+~/.local/bin/pdg init --config project.yaml \
   --chapters intro.md analysis.md recommendations.md
 ```
 
@@ -74,20 +74,20 @@ Converts markdown (with YAML front-matter) to branded HTML and optionally PDF.
 
 ```bash
 # HTML only
-phoenix-docgen build report.md
+~/.local/bin/pdg build report.md
 
 # HTML + PDF
-phoenix-docgen build report.md --pdf
+~/.local/bin/pdg build report.md --pdf
 
 # With a specific theme
-phoenix-docgen build report.md --theme mytheme --pdf
+~/.local/bin/pdg build report.md --theme mytheme --pdf
 
 # With CLI overrides (override any front-matter value)
-phoenix-docgen build report.md \
+~/.local/bin/pdg build report.md \
   --version "v2.0 FINAL" --pdf
 
 # Without cover page or info block
-phoenix-docgen build report.md \
+~/.local/bin/pdg build report.md \
   --no-cover --no-info-block --pdf
 ```
 
@@ -107,11 +107,11 @@ phoenix-docgen build report.md \
 Combines multiple markdown files into a single document with chapter dividers, driven by a YAML config.
 
 ```bash
-phoenix-docgen combine \
+~/.local/bin/pdg combine \
   --config project.yaml --pdf
 
 # With theme override
-phoenix-docgen combine \
+~/.local/bin/pdg combine \
   --config project.yaml --theme mytheme --pdf
 ```
 
@@ -551,7 +551,7 @@ The following modules power the styling (in `~/.local/share/phoenix-docgen/`):
 
 ```bash
 # 1. Scaffold (generates commented template with hints)
-phoenix-docgen init \
+~/.local/bin/pdg init \
   "/path/to/AI-Strategy.md" \
   --title1 "AI" --title2 "STRATEGY" \
   --subtitle "TECHNOLOGY STRATEGY 2026" \
@@ -561,27 +561,27 @@ phoenix-docgen init \
 # 2. Edit the markdown content
 
 # 3. Build
-phoenix-docgen build "/path/to/AI-Strategy.md" --pdf
+~/.local/bin/pdg build "/path/to/AI-Strategy.md" --pdf
 ```
 
 ### Build an Existing Document with New Version
 
 ```bash
-phoenix-docgen build document.md --version "v3.0 FINAL" --pdf
+~/.local/bin/pdg build document.md --version "v3.0 FINAL" --pdf
 ```
 
 ### Create a Multi-Chapter Report
 
 ```bash
 # 1. Scaffold config (generates commented YAML with all options)
-phoenix-docgen init \
+~/.local/bin/pdg init \
   --config report-config.yaml \
   --chapters chapter1.md chapter2.md chapter3.md
 
 # 2. Edit the YAML config
 
 # 3. Build
-phoenix-docgen combine --config report-config.yaml --pdf
+~/.local/bin/pdg combine --config report-config.yaml --pdf
 ```
 
 ---
@@ -624,4 +624,4 @@ Use `--output /absolute/path/to/output.html` to control output location.
 Tables in `.landscape-section` use `table-layout: fixed`. Column widths are controlled via `col:nth-child()` selectors in `shared_styles.py` -> `get_content_css()`. Pandoc's equal-width colgroup inline styles are overridden with `!important`.
 
 ### Theme not found
-Check that the theme directory exists in one of the searched locations. Run `phoenix-docgen help branding` for the full resolution order.
+Check that the theme directory exists in one of the searched locations. Run `~/.local/bin/pdg help branding` for the full resolution order.
